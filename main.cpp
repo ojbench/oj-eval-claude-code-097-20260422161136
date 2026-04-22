@@ -42,16 +42,16 @@ TreeNode* buildTree(const vector<string>& nodes) {
 }
 
 void reverseInorder(TreeNode* root, int& cnt, int& result) {
-    if (!root || cnt <= 0) return;
+    if (!root || result != -1) return;
 
     reverseInorder(root->right, cnt, result);
 
-    if (cnt > 0) {
-        cnt--;
-        if (cnt == 0) {
-            result = root->val;
-            return;
-        }
+    if (result != -1) return;
+
+    cnt--;
+    if (cnt == 0) {
+        result = root->val;
+        return;
     }
 
     reverseInorder(root->left, cnt, result);
